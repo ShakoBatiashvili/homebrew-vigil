@@ -8,6 +8,10 @@ class Vigil < Formula
   depends_on xcode: ["16.0", :build]
   depends_on macos: :sonoma
 
+  # The app bundle is signed (ad hoc, hardened runtime) by scripts/build-app.sh, which already strips it.
+  # Homebrew's cleaner would strip the executable again and break the bundle's code-signature seal.
+  skip_clean "Vigil.app"
+
   def install
     # Homebrew's build sandbox cannot host SwiftPM's own sandbox.
     ENV["SWIFTPM_FLAGS"] = "--disable-sandbox"
