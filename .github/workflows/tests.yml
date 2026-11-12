@@ -20,6 +20,12 @@ jobs:
       - name: Tap this checkout
         run: brew tap ShakoBatiashvili/vigil "$GITHUB_WORKSPACE"
 
+      # Homebrew 7 refuses to load formulae from untrusted taps, and `brew audit`/`brew test` (unlike
+      # `brew install` of a fully qualified name) do not trust implicitly. Trust only this one formula,
+      # on this throwaway runner, so the checks can load the checkout we are testing.
+      - name: Trust this formula (CI only)
+        run: brew trust --formula ShakoBatiashvili/vigil/vigil
+
       - name: Style
         run: brew style ShakoBatiashvili/vigil/vigil
 
