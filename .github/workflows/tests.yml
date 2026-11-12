@@ -1,0 +1,36 @@
+name: brew install
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      # Pinned to a commit SHA (v7.0.1).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Tap this checkout
+        run: brew tap ShakoBatiashvili/vigil "$GITHUB_WORKSPACE"
+
+      - name: Style
+        run: brew style ShakoBatiashvili/vigil/vigil
+
+      - name: Audit
+        run: brew audit --strict ShakoBatiashvili/vigil/vigil
+
+      - name: Build from source
+        run: brew install --build-from-source --verbose ShakoBatiashvili/vigil/vigil
+
+      - name: Formula test
+        run: brew test ShakoBatiashvili/vigil/vigil
+
+      - name: The installed CLI runs
+        run: vigil version
