@@ -40,3 +40,12 @@ jobs:
 
       - name: The installed CLI runs
         run: vigil version
+
+      # Follows the README literally: copy the built app to ~/Applications and make sure the copy is intact.
+      - name: Follow the README (copy the app, verify the copy)
+        run: |
+          mkdir -p "$HOME/Applications"
+          cp -R "$(brew --prefix vigil)/Vigil.app" "$HOME/Applications/"
+          codesign --verify --strict --verbose=2 "$HOME/Applications/Vigil.app"
+          test -x "$HOME/Applications/Vigil.app/Contents/MacOS/Vigil"
+          vigil status
