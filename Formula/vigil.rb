@@ -1,8 +1,8 @@
 class Vigil < Formula
   desc "Keep your Mac awake, safely: menu-bar app and CLI with a battery guard"
   homepage "https://github.com/ShakoBatiashvili/vigil"
-  url "https://github.com/ShakoBatiashvili/vigil/releases/download/v0.1.0/vigil-0.1.0.tar.gz"
-  sha256 "7877a69850d8721e1f83ddbdc09c8e5933c87eac64879881049dd80fe548c537"
+  url "https://github.com/ShakoBatiashvili/vigil/releases/download/v0.1.1/vigil-0.1.1.tar.gz"
+  sha256 "35f7581989e243641a6f07558c2109911a2a1050f04575e481c494dd461cfa50"
   license "MIT"
 
   depends_on xcode: ["16.0", :build]

@@ -27,8 +27,8 @@ The formula pins the SHA-256 of the release tarball. To regenerate that tarball 
 
 ```sh
 git clone https://github.com/ShakoBatiashvili/vigil.git && cd vigil
-git archive --format=tar.gz --prefix=vigil-0.1.0/ -o vigil-0.1.0.tar.gz v0.1.0
-shasum -a 256 vigil-0.1.0.tar.gz     # should match the formula
+git archive --format=tar.gz --prefix=vigil-0.1.1/ -o vigil-0.1.1.tar.gz v0.1.1
+shasum -a 256 vigil-0.1.1.tar.gz     # should match the formula
 ```
 
 ## Uninstall
